@@ -4,11 +4,11 @@ import Typewriter from "typewriter-effect";
 
 const TypeWriter = () => {
   return (
-    <div className="text-4xl text-center text-gold/70 mt-6 font-roboto">
+    <div className="text-5xl font-exo text-center text-gold/60 mt-6">
       <Typewriter
         onInit={(typewriter) => {
           typewriter
-            .typeString("Software Engineer & Web Developer")
+            .typeString("Web Developer")
             .changeDelay(150)
             .deleteAll()
             .typeString("HTML | CSS")

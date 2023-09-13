@@ -1,10 +1,11 @@
 "use client";
-
+import React from "react";
+import { useEffect, useState } from "react";
 import NavLink from "./NavLink";
 import Heading from "./Heading";
 import SocialLink from "./SocialLink";
 import { HiHome, HiUser, HiViewColumns, HiEnvelope } from "react-icons/hi2";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaPhone } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { linkVariants } from "@/lib/framer-motion-animations";
 
@@ -42,14 +43,37 @@ const social = [
 ];
 
 const Navbar = () => {
+  const [scrolling, setScrolling] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <nav className="flex fixed w-full items-center py-8 px-8">
-      <div className="w-6/12">
+      <div className="w-4/12">
         <NavLink href="/" className="hover:opacity-70">
           <Heading>Randy Caballero</Heading>
         </NavLink>
         <h2 className="text-gold/80">Software Engineer & Web Developer</h2>
       </div>
+      <motion.div
+        className="text-white/70 hover:text-bitter"
+        variants={linkVariants}
+        whileHover="hover"
+      ></motion.div>
 
       <ul className="w-3/12 flex justify-end items-center gap-6 text-xl mx-auto text-white/90">
         {navbar.map((link) => (
